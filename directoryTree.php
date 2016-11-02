@@ -1,17 +1,5 @@
 <?php
-$paths = array(
-	'nivel',
-	'nivel2'=>array(
-		'subnivel1',
-		'subnivel2'=>array(
-			'subnivel3',
-			'subnivel4'=>array(
-				'subsubnivel4'
-			)
-		)
-	)
-);
-
+namespace Util\Dir;
 class DirectoryTree {
 
 	private $array;
@@ -19,7 +7,7 @@ class DirectoryTree {
 		$this->array = $array;
 	}
 	private function recursiveArray(){
-		$iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->array));
+		$iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($this->array));
 		$parent = '';
 		$arrayTree = array();
 		foreach ($iterator as $key=>$value){
@@ -52,7 +40,3 @@ class DirectoryTree {
 		throw new Exception("Incorrect array format");
 	}
 }
-$directoryTree = new DirectoryTree($paths);
-echo "<pre>";
-var_dump($directoryTree->createDirectoryTree());
-echo "</pre>";
